@@ -31,16 +31,22 @@ int main(int argc, char const *argv[]) {
   if (!str_cmp(PASS, sifra)) return 0;
 
 
-  FILE * file;
+  FILE * file, *tmp_file;
   file = fopen(argv[1], "r");
+  system("rm /PassFold/tmp_file");
+  tmp_file = fopen("/PassFold/tmp_file", "w");
   fgets(temp, 999, file);
   printf("Username: ");
   printf("%s", temp);
   printf("Lozinka: ");
   fgets(temp, 999, file);
   decrypt(temp);
+  fputs(temp, tmp_file);
   printf("%s\n", temp);
   fclose(file);
+  fclose(tmp_file);
+  system("xclip /PassFold/tmp_file");
+  system("rm /PassFold/tmp_file");
 
   return 0;
 }

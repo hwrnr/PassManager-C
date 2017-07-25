@@ -32,7 +32,7 @@ int str_cmp(char *str1, char *str2){
 }
 
 char newRandom(){
-  return rand();
+  return (char)rand();
 }
 
 int main()
@@ -58,8 +58,8 @@ int main()
     char niz[duzina + 1];
     while (niz[0] < 33 || niz[0] > 126){
       niz[0] += newRandom();
-      printf("%c", niz[0]);
     }
+    printf("%c", niz[0]);
     for (i = 1; i < duzina; ++i){
       while (niz[i] < 33 || niz[i] > 126 || niz[i] == niz[i-1]){
         niz[i] += (niz[i-1] + newRandom());

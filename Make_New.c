@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 #define TRUE 1
 #define FALSE 0
@@ -30,11 +31,16 @@ int str_cmp(char *str1, char *str2){
     return TRUE;
 }
 
+char newRandom(){
+  return rand();
+}
+
 int main()
 {
-    int duzina, i, c;
+    int duzina, i;
     char adresa[999], username[999], sadresa[999] = "/PassFold/", sifra[20];
     FILE * file;
+    srand(time(NULL));
     printf("Unesite sifru: "); scanf(" %s", sifra);
     if (!str_cmp(PASS, sifra)) return FALSE;
     printf("Unesite naziv servisa (fajla), bez razmaka: "); scanf(" %s", adresa);
@@ -50,14 +56,13 @@ int main()
     }
     ++duzina;
     char niz[duzina + 1];
-    while (niz[0] == 0){
-      niz[0] = (int)(((long long int)username)%(256+c));
-      ++c;
+    while (niz[0] < 33 || niz[0] > 126){
+      niz[0] += newRandom();
+      printf("%c", niz[0]);
     }
     for (i = 1; i < duzina; ++i){
       while (niz[i] < 33 || niz[i] > 126 || niz[i] == niz[i-1]){
-        niz[i] += niz[i-1] + c;
-        ++c;
+        niz[i] += (niz[i-1] + newRandom());
       }
       printf("%c", niz[i]);
     }

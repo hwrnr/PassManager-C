@@ -33,7 +33,7 @@ int main(int argc, char const *argv[]) {
 
   FILE * file, *tmp_file;
   file = fopen(argv[1], "r");
-  system("rm /PassFold/tmp_file");
+  system("rm /PassFold/tmp_file 2>>/dev/null");
   tmp_file = fopen("/PassFold/tmp_file", "w");
   fgets(temp, 999, file);
   printf("Username: ");
@@ -46,7 +46,7 @@ int main(int argc, char const *argv[]) {
   fclose(file);
   fclose(tmp_file);
   system("xclip /PassFold/tmp_file");
-  system("rm /PassFold/tmp_file");
+  system("rm /PassFold/tmp_file 2>>/dev/null");
 
   return 0;
 }

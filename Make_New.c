@@ -6,7 +6,7 @@
 #define FALSE 0
 
 #define PASS "\\"
-
+#define duzina 30
 
 void encrypt(char str[]){
   int i, j = 1;
@@ -37,7 +37,8 @@ char newRandom(){
 
 int main()
 {
-    int duzina, i;
+    //int duzina;
+    int i;
     char adresa[999], username[999], sadresa[999] = "/PassFold/", sifra[20];
     FILE * file;
     srand(time(NULL));
@@ -50,26 +51,25 @@ int main()
     printf("Unesite username: "); scanf("%s", username);
     fputs(username, file);
     fputs("\n", file);
-    printf("Unesite duzinu zeljene sifre: "); scanf("%d", &duzina);
-    while (duzina < 1){
-      printf("Unesite duzinu zeljene sifre: "); scanf("%d", &duzina);
-    }
-    ++duzina;
+    //printf("Unesite duzinu zeljene sifre: "); scanf("%d", &duzina);
+    //while (duzina < 1){
+    //  printf("Unesite duzinu zeljene sifre: "); scanf("%d", &duzina);
+    //}
     char niz[duzina + 1];
     while (niz[0] < 33 || niz[0] > 126){
       niz[0] += newRandom();
     }
-    printf("%c", niz[0]);
+    //printf("%c", niz[0]);
     for (i = 1; i < duzina; ++i){
       while (niz[i] < 33 || niz[i] > 126 || niz[i] == niz[i-1]){
         niz[i] += (niz[i-1] + newRandom());
       }
-      printf("%c", niz[i]);
+      //printf("%c", niz[i]);
     }
     niz[duzina] = '\0';
     encrypt(niz);
     fputs(niz, file);
     fclose(file);
-    printf("\n");
+    //printf("\n");
     return 0;
 }

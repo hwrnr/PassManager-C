@@ -42,7 +42,7 @@ int main(int argc, char const *argv[]) {
   fgets(temp, 999, file);
   decrypt(temp);
   fputs(temp, tmp_file);
-  printf("%s\n", temp);
+  printf("* * * * *\n");
   fclose(file);
   fclose(tmp_file);
   system("xclip /PassFold/tmp_file");

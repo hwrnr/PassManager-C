@@ -19,7 +19,7 @@ void encrypt(char str[]){
 
 void srediAdresu(char sadresa[], char adresa[]){
   int i = 10, j;
-  for (j = 0; adresa[j] != '0'; ++j){
+  for (j = 0; adresa[j] != '\0'; ++j){
     sadresa[i + j] = adresa[j];
   }
   sadresa[i+j] = adresa[j];

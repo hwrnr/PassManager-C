@@ -15,6 +15,15 @@ void decrypt(char str[]){
   }
 }
 
+void srediAdresu(char sadresa[], const char adresa[]){
+  int i = 10, j;
+  for (j = 0; adresa[j] != '\0'; ++j){
+    sadresa[i + j] = adresa[j];
+  }
+  sadresa[i+j] = adresa[j];
+}
+
+
 int str_cmp(char *str1, char *str2){
     int i;
     for (i = 0; str1[i] != '\0'; ++i) if ((str1[i] != str2[i]) || str2[i] == '\0') return FALSE;
@@ -22,7 +31,7 @@ int str_cmp(char *str1, char *str2){
 }
 
 int main(int argc, char const *argv[]) {
-  char temp[999], sifra[20];
+  char temp[999], sifra[20], sadresa[999] = "/PassFold/";
   if (argc != 2){
     printf("Greska\n");
     return FALSE;
@@ -32,7 +41,8 @@ int main(int argc, char const *argv[]) {
 
 
   FILE * file, *tmp_file;
-  file = fopen(argv[1], "r");
+  srediAdresu(sadresa, argv[1]);
+  file = fopen(sadresa ,"r");
   system("rm /PassFold/tmp_file 2>>/dev/null");
   tmp_file = fopen("/PassFold/tmp_file", "w");
   fgets(temp, 999, file);
